@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>YPay UPI Payments Simulator</title>
+    
+    <!-- PWA Manifest & Themes -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#470085" />
+    
+    <!-- iOS Native App Emulation Capable -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="YPay" />
+    <link rel="apple-touch-icon" href="https://img.icons8.com/fluency/192/wallet.png" />
+  </head>
+  <body class="bg-slate-900 select-none">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Register service worker for app-installability prompts -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((reg) => console.log('Service Worker registered successfully:', reg.scope))
+            .catch((err) => console.warn('Service Worker registration failed:', err));
+        });
+      }
+    </script>
+  </body>
+</html>
+

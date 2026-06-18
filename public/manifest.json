@@ -1,0 +1,30 @@
+{
+  "name": "YPay UPI Payments Simulator",
+  "short_name": "YPay",
+  "description": "An interactive, visually rich UPI and bill payment simulator replicating mobile bank transfers, secure PIN entry, dynamic recharge forms, and detailed transaction histories.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#110038",
+  "theme_color": "#470085",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://img.icons8.com/fluency/512/wallet.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://img.icons8.com/fluency/192/wallet.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://img.icons8.com/fluency/192/wallet.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
