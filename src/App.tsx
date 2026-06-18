@@ -102,16 +102,14 @@ export default function App() {
 
   // Reset database back to default mock state
   const handleResetDatabase = () => {
-    if (window.confirm('Do you want to clear your current session and reset YPay back to standard defaults?')) {
-      localStorage.clear();
-      setContacts(INITIAL_CONTACTS);
-      setBankAccounts(INITIAL_BANKS);
-      setTransactions(INITIAL_TRANSACTIONS);
-      setRewards(INITIAL_REWARDS);
-      setWalletBalance(850.00);
-      setUpiLiteBalance(200.00);
-      setScreen('dashboard');
-    }
+    localStorage.clear();
+    setContacts(INITIAL_CONTACTS);
+    setBankAccounts(INITIAL_BANKS);
+    setTransactions(INITIAL_TRANSACTIONS);
+    setRewards(INITIAL_REWARDS);
+    setWalletBalance(850.00);
+    setUpiLiteBalance(200.00);
+    setScreen('dashboard');
   };
 
   // Navigations or custom action hooks
@@ -176,7 +174,7 @@ export default function App() {
     setActiveRecipient(mockBillContact);
     setActiveTransferAmount(amount);
     setActiveTransferBankId(bankAccounts[0]?.id || 'wallet');
-    setActiveTransferBankName(bankAccounts[0]?.bankName || 'YPay Wallet');
+    setActiveTransferBankName(bankAccounts[0]?.bankName || 'PhonePe Wallet');
     setActiveTransferNote(note);
     setScreen('pin_entry');
   };
@@ -217,11 +215,9 @@ export default function App() {
       date: `${new Date().getDate()} ${new Date().toLocaleString('en-US', { month: 'short' })} ${new Date().getFullYear()}`,
       time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
       status: 'success',
-      bankName: `${activeTransferBankName} **** ${
-        activeTransferBankId === 'wallet' 
-          ? 'Wallet' 
-          : bankAccounts.find(b=>b.id===activeTransferBankId)?.accountNumberLast4 || '0000'
-      }`,
+      bankName: activeTransferBankId === 'wallet' 
+        ? 'PhonePe Wallet' 
+        : `${activeTransferBankName} •••• ${bankAccounts.find(b=>b.id===activeTransferBankId)?.accountNumberLast4 || '0000'}`,
       transactionId: `TXN${Math.floor(1000000000 + Math.random() * 9000000000)}`,
       note: activeTransferNote
     };
@@ -256,7 +252,7 @@ export default function App() {
       date: `${new Date().getDate()} ${new Date().toLocaleString('en-US', { month: 'short' })} ${new Date().getFullYear()}`,
       time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
       status: 'success',
-      bankName: 'HDFC Bank ****1234',
+      bankName: 'HDFC Bank •••• 4892',
       transactionId: `TXN${Math.floor(1000000000 + Math.random() * 9000000000)}`,
       note: 'Wallet Credit Fund'
     };
@@ -278,7 +274,7 @@ export default function App() {
       const rewardRecord: Transaction = {
         id: `t_reward_${Date.now()}`,
         type: 'receive',
-        title: 'YPay Smart Cashback',
+        title: 'PhonePe Smart Cashback',
         subtitle: 'Cashback Credit Received',
         avatarInitials: 'CB',
         avatarColor: 'bg-emerald-600',
@@ -286,7 +282,7 @@ export default function App() {
         date: `${new Date().getDate()} ${new Date().toLocaleString('en-US', { month: 'short' })} ${new Date().getFullYear()}`,
         time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
         status: 'success',
-        bankName: 'YPay Rewards Channel',
+        bankName: 'PhonePe Rewards Channel',
         transactionId: `TXN${Math.floor(1000000000 + Math.random() * 9000000000)}`,
         note: 'Loyalty Scratch Winner Cashback'
       };
@@ -305,7 +301,7 @@ export default function App() {
     const replenishTxn: Transaction = {
       id: `t_replenish_${Date.now()}`,
       type: 'receive',
-      title: 'Simulator Sandbox Refill',
+      title: 'PhonePe Balance Refill',
       subtitle: `Refilled • ${new Date().toLocaleDateString('en-US', { day: 'numeric', month: 'short' })}, ${new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}`,
       avatarInitials: 'RF',
       avatarColor: 'bg-indigo-600',
@@ -313,9 +309,9 @@ export default function App() {
       date: `${new Date().getDate()} ${new Date().toLocaleString('en-US', { month: 'short' })} ${new Date().getFullYear()}`,
       time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
       status: 'success',
-      bankName: 'YPay Sandbox Host',
+      bankName: 'PhonePe Host',
       transactionId: `TXN${Math.floor(1000000000 + Math.random() * 9000000000)}`,
-      note: 'Simulated cash back refill of accounts'
+      note: 'Refilled all accounts successfully'
     };
     setTransactions((prev) => [replenishTxn, ...prev]);
   };
@@ -340,6 +336,7 @@ export default function App() {
           onAddWallet={() => setScreen('wallet_panel')}
           onViewRewards={() => setScreen('rewards_panel')}
           onReplenishAllBalances={handleReplenishAllBalances}
+          onReset={handleResetDatabase}
         />
       )}
 

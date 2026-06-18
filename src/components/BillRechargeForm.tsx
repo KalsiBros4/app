@@ -53,7 +53,7 @@ export default function BillRechargeForm({ category, onBack, onSubmit }: BillRec
           label: 'Landlord Bank Node / UPI',
           placeholder: 'Enter landord UPI id (e.g. sharma@okaxis)',
           operators: ['Residential Unit Rent', 'Commercial Office Sp.', 'Co-working Seat Rent'],
-          notes: 'YPay insures transfer. Legal rent slips auto-compiled.'
+          notes: 'PhonePe ensures instant transfer. Legal rent slips auto-compiled.'
         };
       case 'loan':
         return {

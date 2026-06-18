@@ -1,6 +1,6 @@
 {
-  "name": "Vibrant Fintech UPI Payments Simulator",
-  "description": "An interactive, visually rich UPI and bill payment simulator replicating mobile bank transfers, secure PIN entry, dynamic recharge forms, and detailed transaction histories.",
+  "name": "PhonePe",
+  "description": "An exact replica experience of the PhonePe mobile application, containing bank transfers, wallet refill, secure UPI PIN authentication, rewards, and custom instant bill payment forms.",
   "requestFramePermissions": ["camera"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

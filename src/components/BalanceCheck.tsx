@@ -15,7 +15,7 @@ export default function BalanceCheck({ bankAccounts, onBack }: BalanceCheckProps
   const [error, setError] = useState('');
 
   const handleKeypadPress = (val: string) => {
-    if (pin.length < 6) {
+    if (pin.length < 4) {
       setPin((prev) => prev + val);
     }
   };
@@ -25,8 +25,12 @@ export default function BalanceCheck({ bankAccounts, onBack }: BalanceCheckProps
   };
 
   const handleValidate = () => {
-    if (pin.length !== 6) {
-      setError('Please enter your full 6-digit UPI PIN');
+    if (pin.length !== 4) {
+      setError('Please Enter your secret 4-digit UPI PIN code.');
+      return;
+    }
+    if (pin !== '4816') {
+      setError('Incorrect 4-digit UPI PIN. Hint: 4816');
       return;
     }
     setError('');
@@ -96,18 +100,18 @@ export default function BalanceCheck({ bankAccounts, onBack }: BalanceCheckProps
               <span className="text-[11px] bg-white/10 py-1 px-3 rounded-full text-slate-300 inline-block font-semibold">
                 {selectedBank.bankName} Savings
               </span>
-              <h3 className="font-bold text-white text-lg">ENTER 6-DIGIT UPI PIN</h3>
+              <h3 className="font-bold text-white text-lg">ENTER 4-DIGIT UPI PIN</h3>
             </div>
 
             {/* Obscured PIN entry box */}
             <div className="flex flex-col items-center gap-3">
-              <div className="flex justify-center gap-3 py-4 w-full">
-                {[...Array(6)].map((_, i) => (
+              <div className="flex justify-center gap-3.5 py-4 w-full">
+                {[...Array(4)].map((_, i) => (
                   <div
                     key={i}
-                    className={`w-4 h-4 rounded-full border-2 transition-all duration-150 ${
+                    className={`w-3.5 h-3.5 rounded-full border-2 transition-all duration-150 ${
                       pin.length > i
-                        ? 'bg-purple-500 border-purple-500 scale-110 shadow-lg'
+                        ? 'bg-purple-500 border-purple-500 scale-110 shadow-[0_0_12px_rgba(168,85,247,0.4)]'
                         : 'border-slate-600 bg-slate-800'
                     }`}
                   ></div>

@@ -45,7 +45,7 @@ export default function TransferInput({ recipient, bankAccounts, walletBalance, 
 
   const getSelectedPaymentLabel = () => {
     if (selectedBankId === 'wallet') {
-      return `YPay Wallet (₹${walletBalance.toFixed(2)})`;
+      return `PhonePe Wallet (₹${walletBalance.toFixed(2)})`;
     }
     const bank = bankAccounts.find((b) => b.id === selectedBankId);
     return bank ? `${bank.bankName} **** ${bank.accountNumberLast4}` : 'Select Account';
@@ -70,7 +70,7 @@ export default function TransferInput({ recipient, bankAccounts, walletBalance, 
     }
 
     const payFromLabel = selectedBankId === 'wallet' 
-      ? 'YPay Wallet' 
+      ? 'PhonePe Wallet' 
       : bankAccounts.find((b) => b.id === selectedBankId)?.bankName || 'Unknown Bank';
 
     onSubmit(
@@ -177,7 +177,7 @@ export default function TransferInput({ recipient, bankAccounts, walletBalance, 
             disabled={!isPayBtnActive}
             className={`font-extrabold text-xs px-6 py-2.5 rounded-full shadow transition-all cursor-pointer ${
               isPayBtnActive
-                ? 'bg-[#470085] hover:bg-[#5f259f] text-white active:scale-95'
+                ? 'bg-[#470085] hover:bg-[#5f259f] text-white btn-mobile-haptic active:animate-haptic-press btn-vibrate-on-press'
                 : 'bg-slate-100 text-slate-400 opacity-60 cursor-not-allowed'
             }`}
           >
@@ -191,14 +191,14 @@ export default function TransferInput({ recipient, bankAccounts, walletBalance, 
             <button
               key={val}
               onClick={() => handleKeypadPress(val)}
-              className="h-12 flex items-center justify-center font-extrabold text-slate-800 text-base hover:bg-purple-100/40 rounded-lg active:scale-95 transition-all cursor-pointer"
+              className="h-12 flex items-center justify-center font-extrabold text-slate-800 text-base hover:bg-purple-100/40 rounded-lg transition-all cursor-pointer btn-mobile-haptic active:animate-haptic-press"
             >
               {val}
             </button>
           ))}
           <button
             onClick={handleDelete}
-            className="h-12 flex items-center justify-center text-slate-600 hover:bg-purple-100/45 rounded-lg active:scale-95 transition-all cursor-pointer"
+            className="h-12 flex items-center justify-center text-slate-600 hover:bg-purple-100/45 rounded-lg transition-all cursor-pointer btn-mobile-haptic active:animate-haptic-press"
           >
             <IconBackspace className="w-5 h-5 stroke-[2.5]" />
           </button>
@@ -234,7 +234,7 @@ export default function TransferInput({ recipient, bankAccounts, walletBalance, 
                     <Wallet className="w-4 h-4 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-extrabold text-slate-800 text-xs">YPay Wallet</h4>
+                    <h4 className="font-extrabold text-slate-800 text-xs">PhonePe Wallet</h4>
                     <p className="text-[10px] text-slate-400">Available: ₹{walletBalance.toFixed(2)} (PIN-less Enabled)</p>
                   </div>
                 </div>

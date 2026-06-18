@@ -200,7 +200,7 @@ export default function TransactionHistory({ transactions, onBack }: Transaction
               </div>
 
               <div className="flex justify-between">
-                <span className="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Funding Account</span>
+                <span className="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Debited From</span>
                 <span className="text-slate-700 text-xs">{selectedTxnDetails.bankName}</span>
               </div>
 

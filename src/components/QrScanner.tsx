@@ -35,7 +35,7 @@ export default function QrScanner({ contacts, onScanSuccess, onBack }: QrScanner
         }
         setPermissionState('granted');
       } catch (err) {
-        console.error('Webcam stream failed:', err);
+        console.warn('Webcam stream could not be loaded (using fallback simulation):', err);
         setPermissionState('denied');
       }
     }

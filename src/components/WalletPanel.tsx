@@ -50,7 +50,7 @@ export default function WalletPanel({ walletBalance, bankAccounts, onAddFunds, o
             <ArrowLeft className="w-5 h-5" />
           </button>
           <div>
-            <h2 className="font-bold text-base">YPay Wallet</h2>
+            <h2 className="font-bold text-base">PhonePe Wallet</h2>
             <p className="text-[10px] text-white/70">Top Up and PIN-less payments</p>
           </div>
         </div>

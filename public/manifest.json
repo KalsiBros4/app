@@ -1,11 +1,11 @@
 {
-  "name": "YPay UPI Payments Simulator",
-  "short_name": "YPay",
-  "description": "An interactive, visually rich UPI and bill payment simulator replicating mobile bank transfers, secure PIN entry, dynamic recharge forms, and detailed transaction histories.",
+  "name": "PhonePe",
+  "short_name": "PhonePe",
+  "description": "An interactive, visually rich UPI and bill payment experience replicating mobile bank transfers, secure PIN entry, dynamic recharge forms, and detailed transaction histories.",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#110038",
-  "theme_color": "#470085",
+  "background_color": "#ffffff",
+  "theme_color": "#5f259f",
   "orientation": "portrait",
   "icons": [
     {

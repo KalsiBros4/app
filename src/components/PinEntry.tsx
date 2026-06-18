@@ -22,7 +22,7 @@ export default function PinEntry({
   const [error, setError] = useState('');
 
   const handleKeyPress = (val: string) => {
-    if (pin.length < 6) {
+    if (pin.length < 4) {
       setPin((p) => p + val);
     }
   };
@@ -32,8 +32,12 @@ export default function PinEntry({
   };
 
   const handleValidate = () => {
-    if (pin.length !== 6) {
-      setError('Please Enter your secret 6-digit UPI PIN code.');
+    if (pin.length !== 4) {
+      setError('Please Enter your secret 4-digit UPI PIN code.');
+      return;
+    }
+    if (pin !== '4816') {
+      setError('Incorrect 4-digit UPI PIN. Hint: 4816');
       return;
     }
     setError('');
@@ -73,10 +77,10 @@ export default function PinEntry({
 
         {/* Secret Pin Indicators dots */}
         <div className="space-y-5 w-full bg-slate-950/40 border border-slate-800 rounded-3xl p-5 shadow-inner">
-          <p className="text-xs text-slate-300 font-bold tracking-wider uppercase">ENTER 6-DIGIT UPI PIN</p>
+          <p className="text-xs text-slate-300 font-bold tracking-wider uppercase">ENTER 4-DIGIT UPI PIN</p>
           
-          <div className="flex justify-center gap-3 py-1">
-            {[...Array(6)].map((_, i) => (
+          <div className="flex justify-center gap-3.5 py-1">
+            {[...Array(4)].map((_, i) => (
               <div
                 key={i}
                 className={`w-3.5 h-3.5 rounded-full border-2 transition-all duration-150 ${
@@ -107,26 +111,26 @@ export default function PinEntry({
             <button
               key={v}
               onClick={() => handleKeyPress(v)}
-              className="h-14 font-semibold text-lg text-white hover:bg-slate-800 active:scale-95 rounded-xl transition-all cursor-pointer bg-slate-900/30 border border-slate-800/80 shadow-sm"
+              className="h-14 font-semibold text-lg text-white hover:bg-slate-800 rounded-xl transition-all cursor-pointer bg-slate-900/30 border border-slate-800/80 shadow-sm btn-mobile-haptic active:animate-haptic-press"
             >
               {v}
             </button>
           ))}
           <button
             onClick={onBack}
-            className="h-14 flex items-center justify-center text-xs font-bold text-[#eedbff] hover:bg-slate-800 active:scale-95 rounded-xl transition-all cursor-pointer bg-slate-900/30 border border-slate-800/80 shadow-sm"
+            className="h-14 flex items-center justify-center text-xs font-bold text-[#eedbff] hover:bg-slate-800 rounded-xl transition-all cursor-pointer bg-slate-900/30 border border-slate-800/80 shadow-sm btn-mobile-haptic active:animate-haptic-press"
           >
             Cancel
           </button>
           <button
             onClick={() => handleKeyPress('0')}
-            className="h-14 font-semibold text-lg text-white hover:bg-slate-800 active:scale-95 rounded-xl transition-all cursor-pointer bg-slate-900/30 border border-slate-800/80 shadow-sm"
+            className="h-14 font-semibold text-lg text-white hover:bg-slate-800 rounded-xl transition-all cursor-pointer bg-slate-900/30 border border-slate-800/80 shadow-sm btn-mobile-haptic active:animate-haptic-press"
           >
             0
           </button>
           <button
             onClick={handleValidate}
-            className="h-14 flex items-center justify-center bg-purple-600 hover:bg-purple-500 active:scale-95 text-white font-extrabold text-sm rounded-xl transition-all cursor-pointer shadow-lg shadow-purple-900/20"
+            className="h-14 flex items-center justify-center bg-purple-600 hover:bg-purple-500 text-white font-extrabold text-sm rounded-xl transition-all cursor-pointer shadow-lg shadow-purple-900/20 btn-mobile-haptic active:animate-haptic-press btn-vibrate-on-press"
           >
             Confirm
           </button>

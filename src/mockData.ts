@@ -67,7 +67,7 @@ export const INITIAL_BANKS: BankAccount[] = [
   {
     id: 'b1',
     bankName: 'HDFC Bank',
-    accountNumberLast4: '1234',
+    accountNumberLast4: '4892',
     balance: 24500.50,
     type: 'Savings',
     logoText: 'HD',
@@ -104,7 +104,7 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
     date: '28 Aug 2026',
     time: '09:14 AM',
     status: 'success',
-    bankName: 'HDFC Bank ****1234',
+    bankName: 'HDFC Bank •••• 4892',
     transactionId: 'TXN8594231802',
     note: 'Premium Beans blend'
   },
@@ -119,7 +119,7 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
     date: '25 Aug 2026',
     time: '06:30 PM',
     status: 'success',
-    bankName: 'HDFC Bank ****1234',
+    bankName: 'HDFC Bank •••• 4892',
     transactionId: 'TXN9184592038',
     note: 'Weekend road-trip share'
   },
@@ -134,7 +134,7 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
     date: '12 Aug 2026',
     time: '10:00 AM',
     status: 'success',
-    bankName: 'ICICI Bank ****4591',
+    bankName: 'ICICI Bank •••• 4591',
     transactionId: 'TXN4892150381',
     note: 'Consumer ID: EL-489102'
   },
@@ -148,7 +148,7 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
     date: '30 Jul 2026',
     time: '04:45 PM',
     status: 'success',
-    bankName: 'HDFC Bank ****1234',
+    bankName: 'HDFC Bank •••• 4892',
     transactionId: 'TXN7295140381',
     note: 'Organic groceries shopping'
   },
@@ -163,7 +163,7 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
     date: '15 Jul 2026',
     time: '11:20 AM',
     status: 'success',
-    bankName: 'State Bank of India ****8849',
+    bankName: 'State Bank of India •••• 8849',
     transactionId: 'TXN3815024823',
     note: 'Lunch repayment'
   }
@@ -184,7 +184,7 @@ export const INITIAL_REWARDS: RewardCoupon[] = [
     subtitle: 'on Indigo Flights booking',
     details: 'Copy custom promo coupon and apply at check-out on indigo.in. Min booking value ₹4,000.',
     scratched: false,
-    couponCode: 'INDYPAY200'
+    couponCode: 'INDPHONEPE200'
   },
   {
     id: 'r3',
@@ -192,7 +192,7 @@ export const INITIAL_REWARDS: RewardCoupon[] = [
     subtitle: 'Airtel Thanks user exclusive',
     details: 'Free 5GB high-speed 5G voucher. Redeemable on Airtel mobile app inside coupons tab.',
     scratched: false,
-    couponCode: '5GDATAYPAY'
+    couponCode: '5GDATAPHONEPE'
   },
   {
     id: 'r4',

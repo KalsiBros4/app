@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Check, Copy, Share2, Clipboard, ArrowLeft, ArrowRight } from 'lucide-react';
 
 interface SuccessReceiptProps {
@@ -26,6 +26,51 @@ export default function SuccessReceipt({
 }: SuccessReceiptProps) {
   const [copied, setCopied] = useState(false);
   const txnId = `TXN${Math.floor(1000000000 + Math.random() * 9000000000)}`;
+
+  useEffect(() => {
+    // Synth a highly professional, dual-tone melodic ascending payment chime using Web Audio API
+    try {
+      const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+      if (AudioContextClass) {
+        const ctx = new AudioContextClass();
+        const now = ctx.currentTime;
+
+        // First Tone: Standard high fundamental
+        const osc1 = ctx.createOscillator();
+        const gain1 = ctx.createGain();
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(587.33, now); // D5 fundamental
+        osc1.frequency.exponentialRampToValueAtTime(1174.66, now + 0.12); // smooth sweep up
+        
+        gain1.gain.setValueAtTime(0.001, now);
+        gain1.gain.exponentialRampToValueAtTime(0.18, now + 0.04);
+        gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+        
+        osc1.connect(gain1);
+        gain1.connect(ctx.destination);
+        osc1.start(now);
+        osc1.stop(now + 0.4);
+
+        // Second Tone: Melodic major chord third
+        const osc2 = ctx.createOscillator();
+        const gain2 = ctx.createGain();
+        osc2.type = 'sine';
+        osc2.frequency.setValueAtTime(739.99, now + 0.1); // F#5 sharp major third
+        osc2.frequency.exponentialRampToValueAtTime(1479.98, now + 0.22); // sweet chime sweep
+        
+        gain2.gain.setValueAtTime(0.001, now + 0.1);
+        gain2.gain.exponentialRampToValueAtTime(0.15, now + 0.15);
+        gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+        
+        osc2.connect(gain2);
+        gain2.connect(ctx.destination);
+        osc2.start(now + 0.1);
+        osc2.stop(now + 0.5);
+      }
+    } catch (e) {
+      console.warn('Audio Context block guard active.', e);
+    }
+  }, []);
 
   const handleCopyTxn = () => {
     navigator.clipboard.writeText(txnId);
@@ -57,8 +102,8 @@ export default function SuccessReceipt({
         <div className="relative w-24 h-24 mx-auto">
           {/* pulsating ring */}
           <div className="absolute inset-0 bg-emerald-100 rounded-full animate-ping opacity-60"></div>
-          <div className="absolute inset-0 bg-emerald-500 rounded-full flex items-center justify-center shadow-lg shadow-emerald-400/35 border-4 border-emerald-100">
-            <Check className="w-12 h-12 text-white stroke-[3.5]" />
+          <div className="absolute inset-0 bg-emerald-500 rounded-full flex items-center justify-center shadow-lg shadow-emerald-400/35 border-4 border-emerald-150 animate-elastic-grow">
+            <Check className="w-12 h-12 text-white stroke-[3.5] animate-elastic-grow [animation-delay:0.2s]" />
           </div>
         </div>
 
@@ -91,18 +136,22 @@ export default function SuccessReceipt({
             )}
             <div className="text-left leading-none">
               <span className="text-[9px] text-slate-400 font-bold uppercase tracking-widest block mb-1">Paid To</span>
-              <h3 className="font-extrabold text-slate-800 text-sm leading-tight">{recipientName}</h3>
-              <p className="text-[10px] text-slate-400 font-semibold mt-1">{recipientUpi}</p>
+              <div className="flex items-center gap-1.5">
+                <h3 className="font-extrabold text-slate-800 text-sm leading-tight">{recipientName}</h3>
+                <div className="w-3.5 h-3.5 rounded-full bg-blue-500 flex items-center justify-center text-[8px] text-white font-extrabold" title="Verified UPI Account">✓</div>
+              </div>
             </div>
           </div>
 
           <div className="border-t border-slate-100 my-4"></div>
 
           <div className="text-xs space-y-3 font-semibold text-slate-600 pl-1 text-left">
-            <div className="flex justify-between items-center">
-              <span className="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Note Code</span>
-              <span className="text-slate-800 text-xs font-bold">{note}</span>
-            </div>
+            {note && (
+              <div className="flex justify-between items-center">
+                <span className="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Remarks</span>
+                <span className="text-slate-800 text-xs font-bold">{note}</span>
+              </div>
+            )}
 
             <div className="flex justify-between items-center">
               <span className="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Date &amp; Time</span>
@@ -110,8 +159,10 @@ export default function SuccessReceipt({
             </div>
 
             <div className="flex justify-between items-center">
-              <span className="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Method Source</span>
-              <span className="text-slate-800 text-xs">{payFromBankLabel} •••• {payFromBankLast4}</span>
+              <span className="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Debited From</span>
+              <span className="text-slate-800 text-xs">
+                {payFromBankLabel} {payFromBankLast4 && !payFromBankLabel.toLowerCase().includes('wallet') ? `•••• ${payFromBankLast4}` : ''}
+              </span>
             </div>
 
             <div className="flex justify-between items-center relative">
@@ -141,7 +192,7 @@ export default function SuccessReceipt({
       <div className="p-4 grid grid-cols-3 gap-3 relative z-10 shrink-0 border-t border-purple-50">
         <button
           onClick={onShareReceipt}
-          className="col-span-1 border-2 border-slate-200 hover:bg-slate-50 active:scale-95 text-slate-700 py-3 rounded-full flex items-center justify-center gap-1 px-2 transition-all cursor-pointer font-bold text-xs"
+          className="col-span-1 border-2 border-slate-200 hover:bg-slate-50 text-slate-700 py-3 rounded-full flex items-center justify-center gap-1 px-2 transition-all cursor-pointer font-bold text-xs btn-mobile-haptic active:animate-haptic-press"
         >
           <Share2 className="w-4 h-4 text-slate-500" />
           Share
@@ -149,7 +200,7 @@ export default function SuccessReceipt({
 
         <button
           onClick={onNavigateHome}
-          className="col-span-2 bg-[#470085] hover:bg-[#5f259f] active:scale-95 text-white py-3 rounded-full transition-all cursor-pointer shadow-md text-xs font-bold"
+          className="col-span-2 bg-[#470085] hover:bg-[#5f259f] text-white py-3 rounded-full transition-all cursor-pointer shadow-md text-xs font-bold btn-mobile-haptic active:animate-haptic-press btn-vibrate-on-press"
         >
           Done
         </button>
